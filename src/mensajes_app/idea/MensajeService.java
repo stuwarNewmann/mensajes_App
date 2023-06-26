@@ -1,9 +1,26 @@
 package mensajes_app.idea;
 
+import org.apache.kafka.common.protocol.types.Field;
+
+import java.util.Scanner;
+
 public class MensajeService {
 
     public static void crearMensaje(){
-        System.out.println("Mensaje created");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escribe tu mensaje");
+        String mensaje = scanner.nextLine();
+
+        System.out.println("Cual es tu nombre: ");
+        String nombre = scanner.nextLine();
+
+        //Creacion de objeto a enviar a la capa DAO
+        Mensaje registroMensaje = new Mensaje();
+        registroMensaje.setmensaje(mensaje);
+        registroMensaje.setAutor_mensaje(nombre);
+
+        MensajeDao.createMensajeDB(registroMensaje);
+
     }
 
     public static void listarMensaje(){
