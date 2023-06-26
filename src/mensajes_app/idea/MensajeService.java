@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class MensajeService {
 
     public static void crearMensaje(){
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Escribe tu mensaje");
         String mensaje = scanner.nextLine();
-
         System.out.println("Cual es tu nombre: ");
         String nombre = scanner.nextLine();
 
@@ -24,7 +24,10 @@ public class MensajeService {
     }
 
     public static void listarMensaje(){
-        System.out.println("Mensaje Listed");
+        System.out.println("-----------------------------------------------");
+        System.out.println("TUS MENSAJES SON: ");
+        System.out.println("-----------------------------------------------");
+        MensajeDao.leerMensajeDB();
     }
 
     public static void borrarMensaje(){

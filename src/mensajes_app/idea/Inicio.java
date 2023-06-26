@@ -48,13 +48,6 @@ public class Inicio {
 
         } while (optionIn != 5);
 
-        Conexion conexion = new Conexion();
-
-        try (Connection conexion_sucess = conexion.get_connection()) {
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
     }
 
 }

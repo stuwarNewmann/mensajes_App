@@ -2,6 +2,7 @@ package mensajes_app.idea;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MensajeDao {
@@ -28,6 +29,29 @@ public class MensajeDao {
 
     public static void leerMensajeDB(){
 
+        Conexion db_connect = new Conexion();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try (Connection conexion = db_connect.get_connection()){
+
+            String query = "SELECT * FROM mensajes";
+            preparedStatement = conexion.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                System.out.println("--------------------------------------------------------------");
+                System.out.println("ID: " + resultSet.getInt("id_mensaje"));
+                System.out.println("Mensaje: " + resultSet.getString("mensaje"));
+                System.out.println("Autor: " + resultSet.getString("autor_mensaje"));
+                System.out.println("Fecha: " + resultSet.getString("fecha_mensaje"));
+                System.out.println("---------------------------------------------------------------");
+            }
+
+        }catch (SQLException exception){
+            System.out.println(exception);
+            System.out.println("No se pueden recuperar los mensajes.");
+        }
     }
 
     public static void deleteMensajeDB(int id_mensaje){
