@@ -45,9 +45,7 @@ public class Inicio {
                 default:
                     break;
             }
-
         } while (optionIn != 5);
-
     }
 
 }

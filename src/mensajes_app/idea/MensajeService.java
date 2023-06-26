@@ -41,7 +41,18 @@ public class MensajeService {
     }
 
     public static void editarMensaje(){
-        System.out.println("Mensaje Edited");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Escribe tu nuevo mensaje: ");
+        String cuerpoMensaje = scanner.nextLine();
+        System.out.println("Cual es el id del mensaje que desea editar: ");
+        int id_mensaje = scanner.nextInt();
+        //Creacion del objeto mensaje con los parametros seleccionados
+        Mensaje update = new Mensaje();
+        update.setId_mensaje(id_mensaje);
+        update.setmensaje(cuerpoMensaje);
+        //Conectect of DAO
+        MensajeDao.updateMensajeDB(update);
 
     }
 }

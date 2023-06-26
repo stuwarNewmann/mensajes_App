@@ -75,6 +75,23 @@ public class MensajeDao {
     }
 
     public static void updateMensajeDB(Mensaje mensaje){
-        
+        Conexion db_connet = new Conexion();
+
+        try(Connection conexion = db_connet.get_connection()){
+            PreparedStatement preparedStatement = null;
+            try {
+                String query = "UPDATE mensajes SET mensaje = ? WHERE id_mensaje = ?";
+                preparedStatement = conexion.prepareStatement(query);
+                preparedStatement.setString(1, mensaje.getmensaje());
+                preparedStatement.setInt(2, mensaje.getId_mensaje());
+                preparedStatement.executeUpdate();
+                System.out.println("Mensaje Actualizado");
+            }catch (SQLException exception){
+                System.out.println(exception);
+                System.out.println("No se pudo borrar el mensaje");
+            }
+        }catch (SQLException exception){
+            System.out.println(exception);
+        }
     }
 }
